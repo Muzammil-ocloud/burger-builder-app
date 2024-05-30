@@ -1,0 +1,38 @@
+.sideDrawer {
+  height: 100vh;
+  width: 50%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  transition: all 0.5s ease-out;
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 70px;
+  height: 120px;
+  width: 120px;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: absolute;
+  left: 50px;
+  top: 180px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.menu :nth-child(2) {
+  margin-left: -55px;
+}
+.menu :nth-child(n) {
+  cursor: pointer;
+}
+@media screen and (max-width: 500px) {
+  .sideDrawer {
+    width: 80%;
+  }
+}
