@@ -16,7 +16,9 @@ export type TIngredients = {
   bacon: number;
 };
 const BurgerBuilder = (props: any) => {
-  const { ings, totalPrice, onIngredientAdded, onIngredientRemoved } = props;
+  console.log(props.ings);
+  
+  // const { ings, totalPrice, onIngredientAdded, onIngredientRemoved } = props;
   const navigate = useNavigate();
   // const [searchParams, setSearchParams] = useSearchParams();
 
@@ -50,7 +52,7 @@ const BurgerBuilder = (props: any) => {
     if (disabled[prop] <= 0) disabled[prop] = true;
     else disabled[prop] = false;
   }
-  const purchasable: boolean = totalPrice > 100 ? true : false;
+  const purchasable: boolean = props.totalPrice > 100 ? true : false;
   const purchaseHandler = () => {
     setPurchasing(true);
   };
@@ -61,7 +63,7 @@ const BurgerBuilder = (props: any) => {
     // props.history.push("/checkout");
 
     navigate("/checkout", {
-      state: { ingredients: { ...ingredients }, price: totalPrice },
+      state: { ingredients: { ...ingredients }, price: props.totalPrice },
     });
     // navigate("/checkout", { relative: "path" });
     // let data = {
@@ -88,21 +90,21 @@ const BurgerBuilder = (props: any) => {
           {
             <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
               <OrderSummary
-                ingredients={ings}
+                ingredients={props.ings}
                 purchaseCancelled={purchaseCancelHandler}
                 purchaseContinued={purchaseContinueHandler}
-                price={totalPrice}
+                price={props.totalPrice}
               />
             </Modal>
           }
-          <Burger ingredients={ings} />
+          <Burger ingredients={props.ings} />
           <BuildControls
-            ingredientAdded={(type: any) => onIngredientAdded(type)}
-            ingredientRemoved={(type: any) => onIngredientRemoved(type)}
-            disabled={disabled}
+            ingredientAdded={(type: any) => props.onIngredientAdded(type)}
+            ingredientRemoved={(type: any) => props.onIngredientRemoved(type)}
+            disabled={props.ings}
             purchasable={purchasable}
             ordered={purchaseHandler}
-            price={totalPrice}
+            price={props.totalPrice}
           />
         </>
       ) : (

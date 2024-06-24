@@ -5,7 +5,6 @@ interface Ingredient {
 }
 const BurgerIngredient = (props: Ingredient) => {
   let ingredient: any = null;
-  console.log("hello");
   switch (props.type) {
     case "bread-bottom":
       ingredient = <div className={styles.BreadBottom}></div>;
@@ -31,7 +30,7 @@ const BurgerIngredient = (props: Ingredient) => {
       ingredient = <div className={styles.Salad}></div>;
       break;
     default:
-      ingredient = <h1>ssa</h1>;
+   ingredient=null;
   }
   return ingredient;
 };
