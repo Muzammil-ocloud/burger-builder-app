@@ -2,13 +2,14 @@ import React from "react";
 import classes from "./SideDrawer.module.css";
 import BackDrop from "../../ui/Backdrop/Backdrop";
 import logoIcon from "../../../assets/icons/burger.png";
-
+import { useNavigate } from "react-router-dom";
 interface ISideDrawer {
   open: boolean;
   closeSideDrawer: () => void;
 }
 
 const SideDrawer = (props: ISideDrawer) => {
+  const navigate = useNavigate();
   return (
     <div>
       <BackDrop show={props.open} clicked={props.closeSideDrawer} />
@@ -20,8 +21,22 @@ const SideDrawer = (props: ISideDrawer) => {
       >
         <img className={classes.logo} src={logoIcon} alt="logo" />
         <div className={classes.menu}>
-          <div>Burger Builder</div>
-          <div>Checkout</div>
+          <div
+            onClick={() => {
+              navigate("/");
+              props.closeSideDrawer();
+            }}
+          >
+            Burger Builder
+          </div>
+          <div
+            onClick={() => {
+              navigate("/orders");
+              props.closeSideDrawer();
+            }}
+          >
+            Orders
+          </div>
         </div>
       </div>
     </div>
